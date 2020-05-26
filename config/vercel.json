@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "name": "medic-app",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+}

@@ -1,22 +1,61 @@
 {
-  "name": "with-typescript",
+  "name": "medic-app",
   "version": "1.0.0",
+  "license": "ISC",
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "type-check": "tsc"
+    "deploy:vercel": "vercel --build-env FIREBASE_ENV=$FIREBASE_ENV --env NODE_ENV=production --local-config config/vercel.json",
+    "type-check": "tsc --pretty --noEmit",
+    "format": "prettier --write **/*.{js,ts,tsx}",
+    "lint": "eslint . --ext ts --ext tsx --ext js"
   },
   "dependencies": {
-    "next": "latest",
+    "@material-ui/core": "^4.10.0",
+    "@reduxjs/toolkit": "^1.3.6",
+    "@types/react-redux": "^7.1.9",
+    "firebase": "^7.14.5",
+    "next": "9.4.2",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-persist": "^6.0.0",
+    "typesafe-actions": "^5.1.0"
   },
   "devDependencies": {
-    "@types/node": "^12.12.21",
+    "@types/node": "^14.0.5",
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
-    "typescript": "3.7.3"
+    "@typescript-eslint/eslint-plugin": "^3.0.1",
+    "@typescript-eslint/parser": "^3.0.1",
+    "@vercel/next": "^2.6.2",
+    "babel-plugin-optimize-clsx": "^2.6.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-react": "^7.20.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.6",
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.3",
+    "vercel": "^19.0.1"
   },
-  "license": "ISC"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn run type-check"
+    }
+  },
+  "lint-staged": {
+    "*.@(ts|tsx)": [
+      "yarn lint",
+      "yarn format"
+    ]
+  }
 }

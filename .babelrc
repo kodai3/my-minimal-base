@@ -1,0 +1,11 @@
+{
+  "presets": ["next/babel"],
+  "env": {
+    "production": {
+      "plugins": [
+        "babel-plugin-transform-remove-console",
+        "babel-plugin-optimize-clsx"
+      ]
+    }
+  }
+}
